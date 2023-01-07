@@ -10,6 +10,7 @@ public class PlayerMotor : MonoBehaviour
     private bool IsGrounded;
     public float gravity = -9.8f;
     public float jumpHeight = 3f;
+    public bool sprinting;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,7 @@ public class PlayerMotor : MonoBehaviour
     void Update()
     {
         IsGrounded = controller.isGrounded;
+        
     }
     public void ProcessMove(Vector2 input)
     {
@@ -38,6 +40,18 @@ public class PlayerMotor : MonoBehaviour
         if (IsGrounded)
         {
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+        }
+    }
+    public void Sprint()
+    {
+        sprinting = !sprinting;
+        if (sprinting)
+        {
+            speed = 10f;
+        } 
+        else 
+        {
+            speed = 5f;
         }
     }
 }
